@@ -1,8 +1,8 @@
-const url = 'https://pogoapi.net/api/v1/pokemon_names.json'
-const options = {
-  method: 'GET',
-}
-async function fetchData(url, options = {}) {
+async function fetchData() {
+  const url = 'https://pogoapi.net/api/v1/pokemon_names.json'
+  const options = {
+    method: 'GET',
+  }
   try {
     const response = await fetch(url, options)
 
@@ -21,6 +21,6 @@ async function fetchData(url, options = {}) {
     throw error // 可選：將錯誤再次拋出，以便外部代碼處理
   }
 }
-const responseData = await fetchData(url, options)
+// const responseData = await fetchData(url, options)
 
-export default responseData
+export default fetchData
