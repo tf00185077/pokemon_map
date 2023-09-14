@@ -1,36 +1,59 @@
 import { List, ListItem, ListIcon, Grid, Flex, Text } from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
-const Skill = () => {
+import { useContext, useEffect, useState } from 'react'
+import { MinePokemonDetailContext } from '@/store/mine_pokemon_detail_context'
+import { RivalPokemonDetailContext } from '@/store/rival_pokemon_detail_context'
+import {
+  theGreatestDamageToRival,
+  theGreatestDamageToMine,
+} from '../battle/damage_conculate'
+const Skill = (props) => {
+  console.log(theGreatestDamageToRival(), 'theGreatestDamageToRival')
+  let PokemonDetail = {}
+  if (props.type == 'mine') {
+    const minePokemonDetail = useContext(MinePokemonDetailContext)
+    PokemonDetail = minePokemonDetail
+    // console.log(PokemonDetail)
+  } else if (props.type == 'rival') {
+    const rivalPokemonDetail = useContext(RivalPokemonDetailContext)
+    PokemonDetail = rivalPokemonDetail
+  }
   return (
-    <Grid mt={10}>
+    <Grid>
+      <Grid mt={10}>
         <Text fontSize="3xl">基礎招式</Text>
-    <List spacing={3} >
-      <Grid mt={3}>
-        <ListItem>
-          <Grid templateColumns="20px 1fr 40px">
-            <Flex align="center" justify="center"></Flex>
-            <Text>水槍</Text>
-            <Text>66</Text>
+        <List spacing={3}>
+          <Grid mt={3}>
+            {PokemonDetail &&
+              PokemonDetail['cummon_skill'].map((items) => {
+                return (
+                  <Grid templateColumns="20px 1fr 40px" key={items.name}>
+                    <Flex align="center" justify="center"></Flex>
+                    <Text>{items.name}</Text>
+                    <Text>{items.power}</Text>
+                  </Grid>
+                )
+              })}
           </Grid>
-        </ListItem>
-        <ListItem>
-          <Grid templateColumns="20px 1fr 40px">
-            <Flex align="center" justify="center">
-              <ListIcon as={StarIcon} color="green.500" />
-            </Flex>
-            <Text>跳樓</Text>
-            <Text>6</Text>
-          </Grid>
-        </ListItem>
-        <ListItem>
-          <Grid templateColumns="20px 1fr 40px">
-            <Flex align="center" justify="center"></Flex>
-            <Text>火槍</Text>
-            <Text>6</Text>
-          </Grid>
-        </ListItem>
+        </List>
       </Grid>
-    </List>
+      <Grid mt={10}>
+        <Text fontSize="3xl">集氣招式</Text>
+        <List spacing={3}>
+          <Grid mt={3}>
+            {PokemonDetail &&
+              PokemonDetail['charged_skill'].map((items) => {
+                return (
+                  <Grid templateColumns="20px 1fr 40px" key={items.name}>
+                    <Flex align="center" justify="center"></Flex>
+                    <Text>{items.name}</Text>
+                    <Text>{items.power}</Text>
+                  </Grid>
+                )
+              })}
+          </Grid>
+        </List>
+      </Grid>
     </Grid>
   )
 }

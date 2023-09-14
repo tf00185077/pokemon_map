@@ -1,14 +1,13 @@
 import { useContext } from 'react'
-import { PokeDataContext } from '../../../store/poke_data_context_provider'
 import { Center, Image } from '@chakra-ui/react'
-import { useChooseNoContext } from '@/store/choose_id_context'
-const PokeImg = () => {
-  const { choose } = useChooseNoContext()
-  console.log(choose)
+import { ChooseNoContext } from '../../../store/choose_id_context'
+const PokeImg = (props) => {
+  const { choose } = useContext(ChooseNoContext)
+  const chooseNumber = choose[props.type]
   return (
     <Center>
       <Image
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${choose}.png`}
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${chooseNumber}.png`}
       ></Image>
     </Center>
   )

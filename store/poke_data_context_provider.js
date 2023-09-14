@@ -17,4 +17,3 @@ export function PokemonData(props) {
     </PokeDataContext.Provider>
   )
 }
-export const usePokeDataContext = () => {}
