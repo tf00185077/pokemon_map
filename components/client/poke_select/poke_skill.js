@@ -8,8 +8,33 @@ import {
   theGreatestDamageToMine,
 } from '../battle/damage_conculate'
 const Skill = (props) => {
-  console.log(theGreatestDamageToRival(), 'theGreatestDamageToRival')
   let PokemonDetail = {}
+  // console.log(theGreatestDamageToRival(), 'theGreatestDamageToRival')
+  // let damageData = theGreatestDamageToRival() //傷害處理後的值
+  // console.log(damageData, '處理後的值被丟回skill')
+  const theGreatestDamage = theGreatestDamageToRival()
+  const [finalDamageData, setFinalDamageData] = useState()
+  useEffect(() => {
+    setFinalDamageData(theGreatestDamage)
+  }, [theGreatestDamage])
+
+  const [theBestDamageData, setTheBestDamageData] = useState()
+
+  useEffect(() => {
+    if (finalDamageData && finalDamageData.length != 0) {
+      console.log(finalDamageData, '該腳色有的技能')
+      const conculateDamageData = finalDamageData.reduce((prev, current) => {
+        return prev['power'] > current['power'] ? prev : current
+      })
+      setTheBestDamageData(conculateDamageData)
+
+      // console.log(theBestDamageData, '取出傷害罪大的一邊')
+    }
+  }, [finalDamageData])
+
+  useEffect(() => {
+    console.log(theBestDamageData, '最高傷害的技能')
+  }, [theBestDamageData])
   if (props.type == 'mine') {
     const minePokemonDetail = useContext(MinePokemonDetailContext)
     PokemonDetail = minePokemonDetail
@@ -25,12 +50,19 @@ const Skill = (props) => {
         <List spacing={3}>
           <Grid mt={3}>
             {PokemonDetail &&
-              PokemonDetail['cummon_skill'].map((items) => {
+              theBestDamageData &&
+              PokemonDetail['cummon_skill'].map((items, index) => {
                 return (
-                  <Grid templateColumns="20px 1fr 40px" key={items.name}>
-                    <Flex align="center" justify="center"></Flex>
+                  <Grid templateColumns="20px 1fr 40px" key={index}>
+                    <Flex align="center" justify="center">
+                      {theBestDamageData &&
+                        theBestDamageData.name == items.name && (
+                          <StarIcon></StarIcon>
+                        )}
+                    </Flex>
+
                     <Text>{items.name}</Text>
-                    <Text>{items.power}</Text>
+                    <Text>{finalDamageData[index]['power']}</Text>
                   </Grid>
                 )
               })}

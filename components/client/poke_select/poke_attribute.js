@@ -18,11 +18,12 @@ const PokeAttribute = (props) => {
         pokemonDetail['pokemon_attr'].map((item) => {
           return (
             <Text
-              className={customizeStyles[item]}
+              className={`${customizeStyles[item]}`}
               padding="5px"
               key={item}
               fontSize="lg"
               color="white"
+              rounded={'幹'}
             >
               {item}
             </Text>
