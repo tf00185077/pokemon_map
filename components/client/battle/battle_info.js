@@ -9,7 +9,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
+  CardFooter,Heading
 } from '@chakra-ui/react'
 import PokeImg from '../poke_select/poke_img'
 import { useContext, useState, useEffect } from 'react'
@@ -26,6 +26,12 @@ const BattleInfo = (props) => {
   const getBestChargedDamageDataHandler = () => {
     setGetBestChargedDagageData(theGreatestChargedDamage)
   }
+  let whoIs
+  if(props.owner=='mine'){
+    whoIs = "Attack"
+  }else if(props.owner=='rival'){
+    whoIs="Defend"
+  }
   useEffect(() => {})
 
   return (
@@ -34,10 +40,13 @@ const BattleInfo = (props) => {
         <CardBody>
           {/* <ChooseNoContextProvideKr> */}
           <Card mb={5}>
+          <CardHeader>
+    <Heading size='md'>{`${whoIs}`}</Heading>
+  </CardHeader>
             <PokeImg type={props.owner}></PokeImg>
             <PokeAttribute type={props.owner}></PokeAttribute>
           </Card>
-          <Card mb={5} mHeight="400px">
+          <Card mb={5}>
             <ChoosePoke type={props.owner}></ChoosePoke>
             <PokeSkill
               type={props.owner}

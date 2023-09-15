@@ -10,7 +10,7 @@ const ChoosePoke = (props) => {
     dispatchChoole({ type: props.type, value: e.target.value })
   }
   return (
-    <Select bg="gray.100" placeholder="" mt={5} onChange={changeHandler}>
+    <Select bg="gray.100" placeholder="" mt={5} onChange={changeHandler} cursor="pointer">
       {pokemonData &&
         pokemonData.map((data) => {
           return (

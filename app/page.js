@@ -13,6 +13,7 @@ import { RivalPokemonDetailProvider } from '@/store/rival_pokemon_detail_context
 import { EffectiveListContextProvider } from '@/store/effectiveness_context'
 import { BestSkillContextProvider } from '@/store/best_skill_context_provider'
 import BattleAnalysis from '@/components/client/battle/battle_analysis'
+import TeachBox from '@/components/client/UI/teach_box'
 export default function Home() {
   return (
     // <Center>
@@ -27,6 +28,7 @@ export default function Home() {
                     <Center>
                       <Card padding={5}>
                         <Box maxWidth="1600px">
+                          <TeachBox></TeachBox>
                           <Header></Header>
                           <Grid templateColumns="1fr 1fr" gap={5}>
                             <BattleInfo owner="mine"></BattleInfo>
