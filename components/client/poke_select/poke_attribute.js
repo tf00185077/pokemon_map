@@ -13,7 +13,7 @@ const PokeAttribute = (props) => {
     pokemonDetail = rivalPokemonDetail
   }
   return (
-    <Flex justify="center" gap="10px">
+    <Flex justify="center" gap="10px" mb={5}>
       {pokemonDetail &&
         pokemonDetail['pokemon_attr'].map((item) => {
           return (
