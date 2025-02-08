@@ -6,12 +6,12 @@ const HeadInform = () => {
   return (
     <Flex color="white" gap="3px">
       <Center w="100px" flex="1">
-        <Link href='https://line.me/ti/p/hTbpDm6LFC'>
+        <Link href='https://line.me/ti/p/EOljuFouQO'>
         <Image width="20" height="20" alt="AuthLine" src="/line.png"></Image>
         </Link>
       </Center>
       <Center size="150px" flex="1">
-      <Link href='https://www.instagram.com/redgodkill_0406/'>
+      <Link href='https://www.instagram.com/s900070/'>
         <Image
           width="20"
           height="20"
